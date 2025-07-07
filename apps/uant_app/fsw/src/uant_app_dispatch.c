@@ -78,7 +78,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
 {   CFE_Status_t     status; // 내부 판단용
     CFE_MSG_FcnCode_t CommandCode = 0;
     CFE_MSG_GetFcnCode(&SBBufPtr->Msg, &CommandCode);
-
+    //printf("good");
     switch (CommandCode)
     {
         /* ───────── NOOP ───────── */
@@ -374,7 +374,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
 void UANT_APP_TaskPipe(const CFE_SB_Buffer_t *SBBufPtr)
 {
     CFE_SB_MsgId_t MsgId = CFE_SB_INVALID_MSG_ID;
-
+    //printf("good");
     CFE_MSG_GetMsgId(&SBBufPtr->Msg, &MsgId);
 
     switch (CFE_SB_MsgIdToValue(MsgId))

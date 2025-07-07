@@ -24,7 +24,7 @@
 /*
 ** Include Files(추후수정):
 */
-#include "uant_app.h"
+
 #include "uant_app_cmds.h"
 #include "uant_app_utils.h"
 #include "uant_app_eventids.h"
@@ -32,18 +32,22 @@
 #include "uant_app_tbl.h"
 #include "uant_app_version.h"
 #include "cfe_msg.h"
+#include <stdio.h>
+#include <cfe_srl.h>
 
-
+CFE_SRL_IO_Handle_t *I2C_Handle = NULL;
 /*
 ** global data
 */
 UANT_APP_Data_t UANT_APP_Data;
-//CFE_ES_MAIN(UAT_AppMain);
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * *  * * * * **/
 /*                                                                            */
 /* Application entry point and main process loop                              */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * *  * * * * **/
+
+
 void UANT_APP_Main(void)
 {
     CFE_Status_t     status;
@@ -53,6 +57,7 @@ void UANT_APP_Main(void)
     ** Create the first Performance Log entry
     */
     CFE_ES_PerfLogEntry(UANT_APP_PERF_ID);
+    OS_printf("good\n");
 
     /*
     ** Perform application-specific initialization
@@ -74,7 +79,7 @@ void UANT_APP_Main(void)
         ** Performance Log Exit Stamp
         */
         CFE_ES_PerfLogExit(UANT_APP_PERF_ID);
-
+        
         /* Pend on receipt of command packet */
         status = CFE_SB_ReceiveBuffer(&SBBufPtr, UANT_APP_Data.CommandPipe, CFE_SB_PEND_FOREVER);
 
@@ -84,7 +89,8 @@ void UANT_APP_Main(void)
         CFE_ES_PerfLogEntry(UANT_APP_PERF_ID);
 
         if (status == CFE_SUCCESS)
-        {
+        {   
+            
             UANT_APP_TaskPipe(SBBufPtr);
         }
         else
@@ -113,7 +119,7 @@ CFE_Status_t UANT_APP_Init(void)
 {
     CFE_Status_t status;
     
-
+    I2C_Handle = CFE_SRL_ApiGetHandle(CFE_SRL_SOCAT_HANDLE_INDEXER);
     /* Zero out the global data structure */
     memset(&UANT_APP_Data, 0, sizeof(UANT_APP_Data));
 

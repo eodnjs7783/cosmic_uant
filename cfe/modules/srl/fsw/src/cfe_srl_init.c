@@ -10,8 +10,7 @@
 CFE_SRL_IO_Handle_t *Handles[CFE_SRL_GNRL_DEVICE_NUM];
 /**************************************************
  * Index of Each device
- * 0 : I2C0 Handle
- * 1 : RS422 Handle
+ * 0 : SOCAT Handle
  **************************************************/
 
 CFE_SRL_GPIO_Handle_t GPIO[CFE_SRL_TOT_GPIO_NUM];
@@ -33,21 +32,13 @@ int32 CFE_SRL_EarlyInit(void) {
 	 * Serial Comm. Init
  	 * Only `ready == true` interface is initialized
 	 **************************************************/
-	/* I2C0 Init */
-	Status = CFE_SRL_HandleInit(&Handles[CFE_SRL_I2C0_HANDLE_INDEXER], "I2C0", "/dev/i2c-0", SRL_DEVTYPE_I2C, CFE_SRL_I2C0_HANDLE_INDEXER, 0, 0);
+	/* socat Init */
+	Status = CFE_SRL_HandleInit(&Handles[CFE_SRL_SOCAT_HANDLE_INDEXER], "socat", "/dev/pts/1", SRL_DEVTYPE_UART, CFE_SRL_SOCAT_HANDLE_INDEXER, 115200, 0);
 	if (Status != CFE_SUCCESS) {
-		CFE_ES_WriteToSysLog("%s: I2C0 Initialization failed! RC=%d\n", __func__, Status);
-		return CFE_SRL_I2C0_INIT_ERR;
+		CFE_ES_WriteToSysLog("%s: socat Initialization failed! RC=%d\n", __func__, Status);
+		return CFE_SRL_SOCAT_INIT_ERR;
 	}
-	CFE_ES_WriteToSysLog("%s: I2C0 Initialized. FD=%d || DevName=%s\n", __func__, Handles[CFE_SRL_I2C0_HANDLE_INDEXER]->FD, ((CFE_SRL_Global_Handle_t *)Handles[CFE_SRL_I2C0_HANDLE_INDEXER])->DevName);
-
-	/* RS422 Init */
-	Status = CFE_SRL_HandleInit(&Handles[CFE_SRL_RS422_HANDLE_INDEXER], "RS422", "/dev/ttyS2", SRL_DEVTYPE_UART, CFE_SRL_RS422_HANDLE_INDEXER, 250000, 0);
-	if (Status != CFE_SUCCESS) {
-		CFE_ES_WriteToSysLog("%s: RS422 Initialization failed! RC=%d\n", __func__, Status);
-		return CFE_SRL_RS422_INIT_ERR;
-	}
-	CFE_ES_WriteToSysLog("%s: RS422 Initialized. FD=%d || DevName=%s\n", __func__, Handles[CFE_SRL_RS422_HANDLE_INDEXER]->FD, ((CFE_SRL_Global_Handle_t *)Handles[CFE_SRL_RS422_HANDLE_INDEXER])->DevName);
+	CFE_ES_WriteToSysLog("%s: socat Initialized. FD=%d || DevName=%s\n", __func__, Handles[CFE_SRL_SOCAT_HANDLE_INDEXER]->FD, ((CFE_SRL_Global_Handle_t *)Handles[CFE_SRL_SOCAT_HANDLE_INDEXER])->DevName);
 
 return CFE_SUCCESS;
 }

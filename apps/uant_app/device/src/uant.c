@@ -1,14 +1,15 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <cfe_srl.h>
-#include <uant/uant.h>
+#include "uant.h"
 #include "default_cfe_srl_mission_cfg.h"
 #include "default_cfe_srl_extern_typedefs.h"
+#include "uant_app_mission_cfg.h"
+#include <uant_app.h>
 
-/* 전역 핸들: I2C0 고정 사용 */
-static CFE_SRL_IO_Handle_t *I2C_Handle = CFE_SRL_ApiGetHandle(CFE_SRL_I2C0_HANDLE_INDEXER);
 
 
+extern CFE_SRL_IO_Handle_t *I2C_Handle;
 
 
 int ISIS_UANT_SendCmd(uint8_t cc) {

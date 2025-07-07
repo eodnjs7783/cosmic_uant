@@ -79,6 +79,7 @@ SET(SPACECRAFT_ID 0x42)
 # The "MISSION_CORE_MODULES" will be built and statically linked as part
 # of the CFE core executable on every target.  These can be used to amend
 # or override parts of the CFE core on a mission-specific basis.
+
 list(APPEND MISSION_CORE_MODULES srl)
 list(APPEND MISSION_CORE_MODULES rf)
 

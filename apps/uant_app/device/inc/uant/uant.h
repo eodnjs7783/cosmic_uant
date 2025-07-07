@@ -4,6 +4,7 @@
 #include <cfe.h>
 #include <stdint.h>
 
+extern CFE_SRL_IO_Handle_t *I2C_Handle;
 
 
 typedef enum {
