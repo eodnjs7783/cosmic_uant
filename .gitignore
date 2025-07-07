@@ -1,0 +1,5 @@
+/apps/sample_app
+build
+.DS_Store
+/submodules/libgpiod/obc
+
