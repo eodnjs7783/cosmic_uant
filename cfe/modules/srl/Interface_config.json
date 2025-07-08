@@ -2,7 +2,7 @@
     "interfaces" : [
         {
             "type": "i2c",
-            "ready": false,
+            "ready": true,
             "name": "I2C0",
             "DevName": "/dev/i2c-0",   
             "MutexID": 0
@@ -48,7 +48,7 @@
         },
         {
             "type": "uart",
-            "ready": true,
+            "ready": false,
             "name": "socat",
             "DevName": "/dev/pts/1",
             "baudrate": 115200
