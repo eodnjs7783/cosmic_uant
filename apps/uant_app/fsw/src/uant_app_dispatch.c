@@ -275,6 +275,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
                     CFE_SB_TimeStampMsg(CFE_MSG_PTR(tlm.TelemetryHeader));
                     CFE_SB_TransmitMsg(CFE_MSG_PTR(tlm.TelemetryHeader), true);
                     UANT_APP_Data.CmdCounter++;
+                    OS_print("%x", deploy_status);
                 }
             }
             break;
@@ -299,6 +300,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
                     CFE_SB_TimeStampMsg(CFE_MSG_PTR(tlm.TelemetryHeader));
                     CFE_SB_TransmitMsg(CFE_MSG_PTR(tlm.TelemetryHeader), true);
                     UANT_APP_Data.CmdCounter++;
+                    OS_print("%x", raw);
                 }
             }
             break;
@@ -325,6 +327,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
                     CFE_SB_TimeStampMsg(CFE_MSG_PTR(tlm.TelemetryHeader));
                     CFE_SB_TransmitMsg(CFE_MSG_PTR(tlm.TelemetryHeader), true);
                     UANT_APP_Data.CmdCounter++;
+                    OS_print("%x", count);
                 }
             }
             break;
@@ -349,6 +352,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
                     tlm.Payload = time;
                     CFE_SB_TimeStampMsg(CFE_MSG_PTR(tlm.TelemetryHeader));
                     CFE_SB_TransmitMsg(CFE_MSG_PTR(tlm.TelemetryHeader), true);
+                    OS_print("%x", time);
 
                     UANT_APP_Data.CmdCounter++;
                 }
