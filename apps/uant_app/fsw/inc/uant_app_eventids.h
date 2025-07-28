@@ -38,6 +38,8 @@
 #define UANT_APP_SUB_HK_ERR_EID    10
 #define UANT_APP_SUB_CMD_ERR_EID   11
 #define UANT_APP_TABLE_REG_ERR_EID 12
+#define UANT_APP_INIT_EID          24
+
 /* ───── Error Events: Command Execution Failures ───── */
 #define UANT_APP_RESET_ERR_EID          13  /* ISIS_UANT_Reset 실패 */
 #define UANT_APP_ARM_ERR_EID            14  /* ISIS_UANT_ArmAntennaSystems 실패 */

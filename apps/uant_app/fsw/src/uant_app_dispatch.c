@@ -24,6 +24,8 @@
 /*
 ** Include Files:
 */
+
+//메뉴얼 정독하고 걸러야할 야규먼트 체크, 안테나에서 resp가 뭐뭐있는지 get제외하고 공통적으로 오는 것이 있는지 확인
 #include "uant.h" 
 #include "uant_app.h"
 #include "uant_app_dispatch.h"
@@ -275,7 +277,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
                     CFE_SB_TimeStampMsg(CFE_MSG_PTR(tlm.TelemetryHeader));
                     CFE_SB_TransmitMsg(CFE_MSG_PTR(tlm.TelemetryHeader), true);
                     UANT_APP_Data.CmdCounter++;
-                    OS_print("%x", deploy_status);
+                    OS_printf("%x", deploy_status);
                 }
             }
             break;
@@ -300,7 +302,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
                     CFE_SB_TimeStampMsg(CFE_MSG_PTR(tlm.TelemetryHeader));
                     CFE_SB_TransmitMsg(CFE_MSG_PTR(tlm.TelemetryHeader), true);
                     UANT_APP_Data.CmdCounter++;
-                    OS_print("%x", raw);
+                    OS_printf("%x", raw);
                 }
             }
             break;
@@ -327,7 +329,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
                     CFE_SB_TimeStampMsg(CFE_MSG_PTR(tlm.TelemetryHeader));
                     CFE_SB_TransmitMsg(CFE_MSG_PTR(tlm.TelemetryHeader), true);
                     UANT_APP_Data.CmdCounter++;
-                    OS_print("%x", count);
+                    OS_printf("%x", count);
                 }
             }
             break;
@@ -352,7 +354,7 @@ void UANT_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
                     tlm.Payload = time;
                     CFE_SB_TimeStampMsg(CFE_MSG_PTR(tlm.TelemetryHeader));
                     CFE_SB_TransmitMsg(CFE_MSG_PTR(tlm.TelemetryHeader), true);
-                    OS_print("%x", time);
+                    OS_printf("%x", time);
 
                     UANT_APP_Data.CmdCounter++;
                 }
@@ -390,7 +392,7 @@ void UANT_APP_TaskPipe(const CFE_SB_Buffer_t *SBBufPtr)
         case UANT_APP_SEND_HK_MID:
             UANT_APP_SendHkCmd((const UANT_APP_SendHkCmd_t *)SBBufPtr);
             break;
-
+        //비콘 추가
         default:
             CFE_EVS_SendEvent(UANT_APP_MID_ERR_EID, CFE_EVS_EventType_ERROR,
                               "UANT: invalid command packet,MID = 0x%x", (unsigned int)CFE_SB_MsgIdToValue(MsgId));

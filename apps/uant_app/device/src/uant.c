@@ -59,9 +59,6 @@ int ISIS_UANT_SendCmdWithResponse(uint8_t cc, uint8_t respLen, void* resp) {
 
 
 int ISIS_UANT_MeasureAntennaSystemTemperature(uint16_t *rawVoltage) {
-    if (!rawVoltage) {
-        return CFE_SRL_BAD_ARGUMENT;  // NULL 포인터 검증
-    }
     // 응답 버퍼 크기: uint16_t (2바이트)
     return ISIS_UANT_SendCmdWithResponse(
         UANT_CMD_MEASURE_SYSTEM_TEMPERATURE,
@@ -71,10 +68,8 @@ int ISIS_UANT_MeasureAntennaSystemTemperature(uint16_t *rawVoltage) {
 }
 
 
+
 int ISIS_UANT_ReportDeploymentStatus(uint16_t *DeploymentStatus) {
-    if (!DeploymentStatus) {
-        return CFE_SRL_BAD_ARGUMENT;  // NULL 포인터 검증
-    }
     return ISIS_UANT_SendCmdWithResponse(
         UANT_CMD_REPORT_DEPLOYMENT_STATUS,
         sizeof(*DeploymentStatus),
@@ -85,18 +80,14 @@ int ISIS_UANT_ReportDeploymentStatus(uint16_t *DeploymentStatus) {
 
 int ISIS_UANT_ReportAntennaActivationCount(uint8_t AntennaNumber,
                                            uint8_t* ActivationCount) {
-    if (!ActivationCount) {
-        return CFE_SRL_BAD_ARGUMENT;  // NULL 포인터 검증
-    }
     uint8_t reg;
     // 안테나 번호에 따른 레지스터 매핑
     switch (AntennaNumber) {
         case 1: reg = UANT_CMD_REPORT_ANT1_ACTIVATION_CNT; break;
         case 2: reg = UANT_CMD_REPORT_ANT2_ACTIVATION_CNT; break;
         case 3: reg = UANT_CMD_REPORT_ANT3_ACTIVATION_CNT; break;
-        case 4: reg = UANT_CMD_REPORT_ANT4_ACTIVATION_CNT; break;
         default:
-            return CFE_SRL_BAD_ARGUMENT;  // 범위 오류
+            return reg = UANT_CMD_REPORT_ANT4_ACTIVATION_CNT;
     }
     return ISIS_UANT_SendCmdWithResponse(
         reg,
@@ -108,18 +99,15 @@ int ISIS_UANT_ReportAntennaActivationCount(uint8_t AntennaNumber,
 
 int ISIS_UANT_ReportAntennaActivationTime(uint8_t AntennaNumber,
                                           uint16_t* ActivationTime) {
-    if (!ActivationTime) {
-        return CFE_SRL_BAD_ARGUMENT;  // NULL 포인터 검증
-    }
+
     uint8_t reg;
     // 안테나 번호에 따른 레지스터 매핑
     switch (AntennaNumber) {
         case 1: reg = UANT_CMD_REPORT_ANT1_ACTIVATION_TIME; break;
         case 2: reg = UANT_CMD_REPORT_ANT2_ACTIVATION_TIME; break;
         case 3: reg = UANT_CMD_REPORT_ANT3_ACTIVATION_TIME; break;
-        case 4: reg = UANT_CMD_REPORT_ANT4_ACTIVATION_TIME; break;
         default:
-            return CFE_SRL_BAD_ARGUMENT;  // 범위 오류
+            return reg = UANT_CMD_REPORT_ANT4_ACTIVATION_TIME; 
     }
     // LSB 우선 전송(리틀 엔디언) 가정. 필요 시 ntohs() 적용
     return ISIS_UANT_SendCmdWithResponse(

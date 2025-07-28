@@ -15,6 +15,15 @@
 ########################
 
 //Value Computed by CMake
+CFETOOLS_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build/tools
+
+//Value Computed by CMake
+CFETOOLS_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+CFETOOLS_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/tools
+
+//Value Computed by CMake
 CFE_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build
 
 //Use EDS framework
@@ -28,6 +37,15 @@ CFE_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/cfe
 
 //Extra search path for code modules
 CFS_APP_PATH:STRING=
+
+//Value Computed by CMake
+CFS_TABLETOOL_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build/tools/elf2cfetbl
+
+//Value Computed by CMake
+CFS_TABLETOOL_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+CFS_TABLETOOL_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/tools/elf2cfetbl
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
@@ -207,6 +225,42 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 //Enable build of unit tests
 ENABLE_UNIT_TESTS:BOOL=
 
+//Value Computed by CMake
+FM_DOCS_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build/docs/fm-usersguide
+
+//Value Computed by CMake
+FM_DOCS_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+FM_DOCS_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/apps/fm/docs/dox_src
+
+//Value Computed by CMake
+HK_DOCS_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build/docs/hk-usersguide
+
+//Value Computed by CMake
+HK_DOCS_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+HK_DOCS_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/apps/hk/docs/dox_src
+
+//Value Computed by CMake
+HS_DOCS_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build/docs/hs-usersguide
+
+//Value Computed by CMake
+HS_DOCS_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+HS_DOCS_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/apps/hs/docs/dox_src
+
+//Value Computed by CMake
+LC_DOCS_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build/docs/lc-usersguide
+
+//Value Computed by CMake
+LC_DOCS_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+LC_DOCS_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/apps/lc/docs/dox_src
+
 //Mission configuration selection
 MISSIONCONFIG:STRING=sample
 
@@ -222,6 +276,139 @@ MISSION_SOURCE_DIR:PATH=/home/eodnjs7783/cosmic_uant
 //Omit deprecated elements
 OMIT_DEPRECATED:STRING=
 
+//Value Computed by CMake
+OSAL_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build/osal_public_api
+
+//Flags added to all tasks
+OSAL_CONFIG_ADD_TASK_FLAGS:STRING=0
+
+//Controls spawning of a separate utility task for OS_printf
+OSAL_CONFIG_CONSOLE_ASYNC:BOOL=TRUE
+
+//Disable enforcement of privileged operations
+OSAL_CONFIG_DEBUG_PERMISSIVE_MODE:BOOL=FALSE
+
+//Controls inclusion of OS_DEBUG statements in the code
+OSAL_CONFIG_DEBUG_PRINTF:BOOL=FALSE
+
+//Whether to include the Dynamic Loader feature
+OSAL_CONFIG_INCLUDE_DYNAMIC_LOADER:BOOL=TRUE
+
+//Whether to include the Network API
+OSAL_CONFIG_INCLUDE_NETWORK:BOOL=TRUE
+
+//Whether to include the Shell API
+OSAL_CONFIG_INCLUDE_SHELL:BOOL=FALSE
+
+//Whether to include the Static Loader feature
+OSAL_CONFIG_INCLUDE_STATIC_LOADER:BOOL=TRUE
+
+//Maximum Length of resource names
+OSAL_CONFIG_MAX_API_NAME:STRING=20
+
+//Maximum Number of Binary Semaphores to support
+OSAL_CONFIG_MAX_BIN_SEMAPHORES:STRING=20
+
+//Maximum Length of shell command
+OSAL_CONFIG_MAX_CMD_LEN:STRING=1000
+
+//Maximum Number of Condition Variables to support
+OSAL_CONFIG_MAX_CONDVARS:STRING=4
+
+//Maximum Number of Counting Semaphores to support
+OSAL_CONFIG_MAX_COUNT_SEMAPHORES:STRING=20
+
+//Maximum Length of file names
+OSAL_CONFIG_MAX_FILE_NAME:STRING=20
+
+//Maximum Number of File Systems to support
+OSAL_CONFIG_MAX_FILE_SYSTEMS:STRING=14
+
+//Maximum Number of Modules to support
+OSAL_CONFIG_MAX_MODULES:STRING=20
+
+//Maximum Number of Mutexes to support
+OSAL_CONFIG_MAX_MUTEXES:STRING=20
+
+//Maximum Number of Open Directories to support
+OSAL_CONFIG_MAX_NUM_OPEN_DIRS:STRING=4
+
+//Maximum Number of Open Files to support
+OSAL_CONFIG_MAX_NUM_OPEN_FILES:STRING=50
+
+//Maximum Length of path names
+OSAL_CONFIG_MAX_PATH_LEN:STRING=64
+
+//Maximum Number of Queues to support
+OSAL_CONFIG_MAX_QUEUES:STRING=64
+
+//Maximum Length of symbol names
+OSAL_CONFIG_MAX_SYM_LEN:STRING=64
+
+//Maximum Number of Tasks to support
+OSAL_CONFIG_MAX_TASKS:STRING=64
+
+//Maximum Number of Timebases to support
+OSAL_CONFIG_MAX_TIMEBASES:STRING=5
+
+//Maximum Number of Timers to support
+OSAL_CONFIG_MAX_TIMERS:STRING=10
+
+//Maximum Number of printf messages to buffer
+OSAL_CONFIG_PRINTF_BUFFER_DEPTH:STRING=100
+
+//Maximum Length of single printf message
+OSAL_CONFIG_PRINTF_BUFFER_SIZE:STRING=172
+
+//Maximum depth of message queue
+OSAL_CONFIG_QUEUE_MAX_DEPTH:STRING=50
+
+//Maximum Size of network socket addresses
+OSAL_CONFIG_SOCKADDR_MAX_LEN:STRING=28
+
+//Priority level for the background utility task
+OSAL_CONFIG_UTILITYTASK_PRIORITY:STRING=245
+
+//Stack size for the background utility task
+OSAL_CONFIG_UTILITYTASK_STACK_SIZE:STRING=2048
+
+//Value Computed by CMake
+OSAL_DOCS_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build/docs/osal-apiguide
+
+//Value Computed by CMake
+OSAL_DOCS_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+OSAL_DOCS_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/osal/docs/src
+
+//External source directory to check for additional OS/BSP implementations
+OSAL_EXT_SOURCE_DIR:PATH=
+
+//Whether or not to install static libraries and headers
+OSAL_INSTALL_LIBRARIES:BOOL=OFF
+
+//Value Computed by CMake
+OSAL_IS_TOP_LEVEL:STATIC=OFF
+
+//Compile without deprecated or obsolete features for backward
+// compatibility testing
+OSAL_OMIT_DEPRECATED:BOOL=OFF
+
+//Value Computed by CMake
+OSAL_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/osal
+
+//Validate the OSAL API headers as part of the build
+OSAL_VALIDATE_API:BOOL=OFF
+
+//Value Computed by CMake
+SC_DOCS_BINARY_DIR:STATIC=/home/eodnjs7783/cosmic_uant/build/docs/sc-usersguide
+
+//Value Computed by CMake
+SC_DOCS_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+SC_DOCS_SOURCE_DIR:STATIC=/home/eodnjs7783/cosmic_uant/apps/sc/docs/dox_src
+
 //Enable simulation mode using specified toolchain
 SIMULATION:STRING=
 
@@ -230,6 +417,8 @@ SIMULATION:STRING=
 # INTERNAL cache entries
 ########################
 
+//CFS table tool script directory
+CFS_TABLETOOL_SCRIPT_DIR:INTERNAL=/home/eodnjs7783/cosmic_uant/tools/elf2cfetbl/scripts
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -314,7 +503,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=13
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

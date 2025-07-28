@@ -57,7 +57,6 @@ void UANT_APP_Main(void)
     ** Create the first Performance Log entry
     */
     CFE_ES_PerfLogEntry(UANT_APP_PERF_ID);
-    OS_printf("good\n");
 
     /*
     ** Perform application-specific initialization
@@ -68,6 +67,10 @@ void UANT_APP_Main(void)
     if (status != CFE_SUCCESS)
     {
         UANT_APP_Data.RunStatus = CFE_ES_RunStatus_APP_ERROR;
+    }
+    else {
+        CFE_EVS_SendEvent(UANT_APP_INIT_EID,CFE_EVS_EventType_INFORMATION,
+        "UANT_APP init success!");
     }
 
     /*
@@ -119,7 +122,7 @@ CFE_Status_t UANT_APP_Init(void)
 {
     CFE_Status_t status;
     
-    I2C_Handle = CFE_SRL_ApiGetHandle(CFE_SRL_I2C2_HANDLE_INDEXER);
+    I2C_Handle = CFE_SRL_ApiGetHandle(CFE_SRL_I2C0_HANDLE_INDEXER);
     /* Zero out the global data structure */
     memset(&UANT_APP_Data, 0, sizeof(UANT_APP_Data));
 
