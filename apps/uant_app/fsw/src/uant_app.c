@@ -70,7 +70,7 @@ void UANT_APP_Main(void)
     }
     else {
         CFE_EVS_SendEvent(UANT_APP_INIT_EID,CFE_EVS_EventType_INFORMATION,
-        "UANT_APP init success!");
+        "UANT_APP init success!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
     /*
