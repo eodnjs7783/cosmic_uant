@@ -254,7 +254,11 @@ void UANT_APP_TaskPipe(const CFE_SB_Buffer_t *SBBufPtr)
         case UANT_APP_SEND_HK_MID:
             UANT_APP_SendHkCmd((const UANT_APP_SendHkCmd_t *)SBBufPtr);
             break;
-        //비콘 추가
+
+        case UANT_APP_SEND_BCN_MID:
+            UANT_APP_SendBcnCmd((const UANT_APP_SendBcnCmd_t *)SBBufPtr);
+            break;
+        
         default:
             CFE_EVS_SendEvent(UANT_APP_MID_ERR_EID, CFE_EVS_EventType_ERROR,
                               "UANT: invalid command packet,MID = 0x%x", (unsigned int)CFE_SB_MsgIdToValue(MsgId));

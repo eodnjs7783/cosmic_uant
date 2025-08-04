@@ -176,6 +176,10 @@ typedef struct
     CFE_MSG_CommandHeader_t CommandHeader;
 } UANT_APP_SendHkCmd_t;
 
+typedef struct
+{
+    CFE_MSG_CommandHeader_t CommandHeader;
+} UANT_APP_SendBcnCmd_t;
 /*
 ** Housekeeping Telemetry Packet
 */
@@ -183,7 +187,19 @@ typedef struct
 {
     CFE_MSG_TelemetryHeader_t TelemetryHeader;
     UANT_APP_HkTlm_Payload_t  Payload;
+    uint16  deploystatus;
+    uint8 ant1actvcnt;
+    uint8 ant2actvcnt;
+    uint8 ant3actvcnt;
+    uint8 ant4actvcnt;
 } UANT_APP_HkTlm_t;
+
+//bcn
+typedef struct
+{
+    CFE_MSG_TelemetryHeader_t TelemetryHeader;
+    uint16  deploystatus;
+} UANT_APP_bcnTlm_t;
 
 /*
 ** Operation Telemetry Packet

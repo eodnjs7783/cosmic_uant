@@ -47,7 +47,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * *  * *  * * * * */
 CFE_Status_t UANT_APP_SendHkCmd(const UANT_APP_SendHkCmd_t *Msg) // Msg는 트리거일 뿐
 {//hk tlm 보내는 함수
-    int i;
+    
 
     /*
     ** Get command execution counters...
@@ -55,20 +55,97 @@ CFE_Status_t UANT_APP_SendHkCmd(const UANT_APP_SendHkCmd_t *Msg) // Msg는 트�
     UANT_APP_Data.HkTlm.Payload.CommandErrorCounter = UANT_APP_Data.ErrCounter;
     UANT_APP_Data.HkTlm.Payload.CommandCounter      = UANT_APP_Data.CmdCounter;
 
-    /*
-    ** Send housekeeping telemetry packet...
-    */
-    CFE_SB_TimeStampMsg(CFE_MSG_PTR(UANT_APP_Data.HkTlm.TelemetryHeader));
-    CFE_SB_TransmitMsg(CFE_MSG_PTR(UANT_APP_Data.HkTlm.TelemetryHeader), true);
+    CFE_Status_t status;
 
-    /*
-    ** Manage any pending table loads, validations, etc.
-    */
-    for (i = 0; i < UANT_APP_NUMBER_OF_TABLES; i++)
+    status=ISIS_UANT_ReportDeploymentStatus(&UANT_APP_Data.HkTlm.deploystatus); 
+    
+    
+    if (status != CFE_SUCCESS)
     {
-        CFE_TBL_Manage(UANT_APP_Data.TblHandles[i]);
+        CFE_EVS_SendEvent(UANT_APP_GET_STATUS_ERR_EID, CFE_EVS_EventType_ERROR,
+                        "UANT: Failed to get Hk data, status = 0x%08X", status);
+        UANT_APP_Data.ErrCounter++;
     }
 
+
+    for (uint8_t ant = 1; ant <= 4; ant++)
+    {
+        switch (ant)
+        {
+            case 1:
+                status=ISIS_UANT_ReportAntennaActivationCount(1, &UANT_APP_Data.HkTlm.ant1actvcnt);
+                if (status != CFE_SUCCESS)
+                {
+                    CFE_EVS_SendEvent(UANT_APP_GET_STATUS_ERR_EID, CFE_EVS_EventType_ERROR,
+                                    "UANT: Failed to get Hk data, status = 0x%08X", status);
+                    UANT_APP_Data.ErrCounter++;
+                }
+                break;
+            case 2:
+                status=ISIS_UANT_ReportAntennaActivationCount(2, &UANT_APP_Data.HkTlm.ant2actvcnt);
+                if (status != CFE_SUCCESS)
+                {
+                    CFE_EVS_SendEvent(UANT_APP_GET_STATUS_ERR_EID, CFE_EVS_EventType_ERROR,
+                                    "UANT: Failed to get Hk data, status = 0x%08X", status);
+                    UANT_APP_Data.ErrCounter++;
+                }
+                break;
+            case 3:
+                status=ISIS_UANT_ReportAntennaActivationCount(3, &UANT_APP_Data.HkTlm.ant3actvcnt);
+                if (status != CFE_SUCCESS)
+                {
+                    CFE_EVS_SendEvent(UANT_APP_GET_STATUS_ERR_EID, CFE_EVS_EventType_ERROR,
+                                    "UANT: Failed to get Hk data, status = 0x%08X", status);
+                    UANT_APP_Data.ErrCounter++;
+                }
+                break;
+            case 4:
+                status=ISIS_UANT_ReportAntennaActivationCount(4, &UANT_APP_Data.HkTlm.ant4actvcnt);
+                
+                break;
+        }
+    }
+
+
+    if (status != CFE_SUCCESS)
+    {
+        CFE_EVS_SendEvent(UANT_APP_GET_STATUS_ERR_EID, CFE_EVS_EventType_ERROR,
+                        "UANT: Failed to get Hk data, status = 0x%08X", status);
+        UANT_APP_Data.ErrCounter++;
+    }
+    else
+    {
+        CFE_SB_TimeStampMsg(CFE_MSG_PTR(UANT_APP_Data.HkTlm.TelemetryHeader));
+        CFE_SB_TransmitMsg(CFE_MSG_PTR(UANT_APP_Data.HkTlm.TelemetryHeader), true);
+        
+        //OS_printf("%x", UANT_APP_Data.HkTlm.deploystatus);
+    }
+
+    return CFE_SUCCESS;
+}
+
+CFE_Status_t UANT_APP_SendBcnCmd(const UANT_APP_SendBcnCmd_t *Msg) 
+{
+    CFE_Status_t status;
+
+    status=ISIS_UANT_ReportDeploymentStatus(&UANT_APP_Data.bcn.deploystatus); 
+
+    
+    if (status != CFE_SUCCESS)
+    {
+        CFE_EVS_SendEvent(UANT_APP_GET_STATUS_ERR_EID, CFE_EVS_EventType_ERROR,
+                        "UANT: Failed to get beacon data, status = 0x%08X", status);
+        UANT_APP_Data.ErrCounter++;
+    }
+    else
+    {
+        CFE_SB_TimeStampMsg(CFE_MSG_PTR(UANT_APP_Data.bcn.TelemetryHeader));
+        CFE_SB_TransmitMsg(CFE_MSG_PTR(UANT_APP_Data.bcn.TelemetryHeader), true);
+        UANT_APP_Data.CmdCounter++;
+        OS_printf("%x", UANT_APP_Data.bcn.deploystatus);
+    }
+
+    
     return CFE_SUCCESS;
 }
 

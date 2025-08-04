@@ -54,6 +54,9 @@ typedef struct
     uint8 CmdCounter;
     uint8 ErrCounter;
 
+    //beacon telemetry packet
+    UANT_APP_bcnTlm_t bcn;
+
     /*
     ** Housekeeping telemetry packet...
     */

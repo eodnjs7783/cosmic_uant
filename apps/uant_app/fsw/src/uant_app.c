@@ -156,6 +156,11 @@ CFE_Status_t UANT_APP_Init(void)
         CFE_MSG_Init(CFE_MSG_PTR(UANT_APP_Data.HkTlm.TelemetryHeader), CFE_SB_ValueToMsgId(UANT_APP_HK_TLM_MID),
                      sizeof(UANT_APP_Data.HkTlm));
 
+        CFE_MSG_Init(CFE_MSG_PTR(UANT_APP_Data.bcn.TelemetryHeader), CFE_SB_ValueToMsgId(UANT_APP_BCN_TLM_MID),
+                     sizeof(UANT_APP_Data.bcn));
+
+        
+
         /*
          ** Create Software Bus message pipe.
          */
@@ -193,6 +198,18 @@ CFE_Status_t UANT_APP_Init(void)
         }
     }
 
+    if (status == CFE_SUCCESS)
+    {
+        /*
+        ** Subscribe to ground command packets
+        */
+        status = CFE_SB_Subscribe(CFE_SB_ValueToMsgId(UANT_APP_SEND_BCN_MID), UANT_APP_Data.CommandPipe);
+        if (status != CFE_SUCCESS)
+        {
+            CFE_EVS_SendEvent(UANT_APP_SUB_CMD_ERR_EID, CFE_EVS_EventType_ERROR,
+                              "Uant App: Error Subscribing to Commands, RC = 0x%08lX", (unsigned long)status);
+        }
+    }
     
     return status;
 }
