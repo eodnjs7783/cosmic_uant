@@ -318,6 +318,14 @@ void TO_LAB_forward_telemetry(void)
                 else
                 {
                     OsStatus = OS_SocketSendTo(TO_LAB_Global.TLMsockid, NetBufPtr, NetBufSize, &d_addr);
+                    
+                    /*****************************
+                     * RT Telemetry Out
+                     ****************************/
+                    CfeStatus = CFE_RF_TelemetryEmit((void *)NetBufPtr, NetBufSize, 13); /* Eliminate `const` attr */
+                    if (CfeStatus != CFE_SUCCESS) {
+                        CFE_EVS_SendErr(TO_LAB_TLMOUTSTOP_ERR_EID, "%s: RF emit error.\n", __func__);
+                    }
                 }
 
                 CFE_ES_PerfLogExit(TO_LAB_SOCKET_SEND_PERF_ID);

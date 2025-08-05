@@ -57,10 +57,6 @@
         "future": "cpp",
         "system_error": "cpp",
         "regex": "cpp",
-<<<<<<< HEAD
-        "cfe_config.h": "c",
-        "uant.h": "c"
-=======
         "thread": "c",
         "fstream": "c",
         "iosfwd": "c",
@@ -118,8 +114,37 @@
         "cfe_resourceid_api_typedefs.h": "c",
         "cfe_sb_platform_cfg.h": "c",
         "cfe_tbl_platform_cfg.h": "c",
-        "cfe_tbl_internal_cfg.h": "c"
->>>>>>> 9da93d5463f7574bd99ace62fa6f91688270af48
+        "cfe_tbl_internal_cfg.h": "c",
+        "cfe_srl_dispatch.h": "c",
+        "cfe_srl_msgids.h": "c",
+        "csp_endian.h": "c",
+        "csp_thread.h": "c",
+        "i2c.h": "c",
+        "time.h": "c",
+        "sample_lib.h": "c",
+        "rpt.h": "c",
+        "cfe_sb_destination_typedef.h": "c",
+        "cfe_evs.h": "c",
+        "cfe_es.h": "c",
+        "cfe_es_api_typedefs.h": "c",
+        "sc_msg.h": "c",
+        "sc_platform_cfg.h": "c",
+        "rpt_task.h": "c",
+        "rpt_dispatch.h": "c",
+        "rpt_msgids.h": "c",
+        "rpt_mission_cfg.h": "c",
+        "rpt_tbl.h": "c",
+        "cfe_tbl_filedef.h": "c",
+        "rpt_cmd.h": "c",
+        "rpt_eventids.h": "c",
+        "rpt_internal_cfg.h": "c",
+        "cfe_time.h": "c",
+        "cfe_es_resetdata_typedef.h": "c",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "ranges": "cpp",
+        "span": "cpp"
     },
     "cmake.sourceDirectory": "/home/hj/Documents/FSW/tools/elf2cfetbl"
 }

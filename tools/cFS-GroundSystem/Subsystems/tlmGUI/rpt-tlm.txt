@@ -1,0 +1,7 @@
+Message ID,            12,  2,  H, Hex, NULL,        NULL,        NULL,       NULL
+Command Code,          14,  1,  B, Dec, NULL,        NULL,        NULL,       NULL
+Return Type,           15,  1,  B, Dec, NULL,        NULL,        NULL,       NULL
+Return Code,           16,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+Return Data Size,  	   20,  2,  H, Dec, NULL,        NULL,        NULL,       NULL
+Return Data Value1,    24,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+Return Data Value2,    28,  4,  I, Dec, NULL,        NULL,        NULL,       NULL

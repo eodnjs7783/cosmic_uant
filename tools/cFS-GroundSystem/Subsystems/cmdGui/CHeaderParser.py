@@ -447,7 +447,7 @@ if __name__ == '__main__':
                         # the user input is both
                         # - a valid integer
                         # - between 0 and 128 (inclusively)
-                        while not array_size.isdigit() or int(
+                        while not isinstance(array_size, int) or int(
                                 array_size) not in range(129):
                             # User input is not an integer
                             if not array_size.isdigit():

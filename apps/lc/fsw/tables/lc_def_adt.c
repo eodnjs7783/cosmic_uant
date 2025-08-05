@@ -177,15 +177,15 @@ CFE_TBL_FileDef_t CFE_TBL_FileDef = {"LC_ADT", LC_APP_NAME "." LC_ADT_TABLENAME,
 */
 LC_ADTEntry_t LC_ADT[LC_MAX_ACTIONPOINTS] = {
     /* #0 (unused) */
-    {.DefaultState      = LC_APSTATE_NOT_USED,
-     .MaxPassiveEvents  = 0,
-     .MaxPassFailEvents = 0,
-     .MaxFailPassEvents = 0,
-     .RTSId             = 0,
-     .MaxFailsBeforeRTS = 0,
+    {.DefaultState      = LC_APSTATE_ACTIVE,
+     .MaxPassiveEvents  = 2,
+     .MaxPassFailEvents = 2,
+     .MaxFailPassEvents = 2,
+     .RTSId             = 3,
+     .MaxFailsBeforeRTS = 1,
      .EventType         = CFE_EVS_EventType_INFORMATION,
-     .EventID           = 0,
-     .EventText         = {" "},
+     .EventID           = 488,
+     .EventText         = {"I LOVE MOZART "},
      .RPNEquation =
          {/* (WP_0) */
           0, LC_RPN_EQUAL}},

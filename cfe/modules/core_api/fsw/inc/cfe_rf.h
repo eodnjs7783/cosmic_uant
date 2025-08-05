@@ -16,6 +16,8 @@
 #define CFE_RF_H
 
 
-void CFE_RF_CommandIngestInit(CFE_ES_TaskId_t *TaskIdPtr);
+int32 CFE_RF_CommandIngestInit(CFE_ES_TaskId_t *TaskIdPtr);
+
+int32 CFE_RF_TelemetryEmit(void *BufPtr, size_t Size, uint8_t Port);
 
 #endif

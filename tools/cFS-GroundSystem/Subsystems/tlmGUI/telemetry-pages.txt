@@ -28,3 +28,7 @@ SB OneSub Tlm,             GenericTelemetry.py,     0x80E,   cfe-sb-onesub-tlm.t
 ES Shell Tlm,              GenericTelemetry.py,     0x80F,   cfe-es-shell-tlm.txt
 ES MEMSTATS Tlm,           GenericTelemetry.py,     0x810,   cfe-es-memstats-tlm.txt
 ES BlockStats Tlm 1,       GenericTelemetry.py,     0x810,   cfe-es-blockstats_1-tlm.txt
+SRL HK Tlm,                GenericTelemetry.py,     0x8AF,   cfe-srl-hk-tlm.txt
+RPT Tlm,                   GenericTelemetry.py,     0x825,   rpt-tlm.txt
+RPT Crit Tlm,              GenericTelemetry.py,     0x826,   rpt-critical-tlm.txt
+RPT App Tlm,               GenericTelemetry.py,     0x823,   rpt-critical-tlm.txt

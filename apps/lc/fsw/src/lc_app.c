@@ -219,6 +219,8 @@ CFE_Status_t LC_AppInit(void)
                           LC_MAJOR_VERSION, LC_MINOR_VERSION, LC_REVISION, LC_MISSION_REV);
     }
 
+    LC_AppData.CurrentLCState = LC_STATE_ACTIVE;
+
     return Status;
 }
 

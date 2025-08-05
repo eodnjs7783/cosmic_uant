@@ -34,7 +34,7 @@ int CFE_SRL_Write(CFE_SRL_IO_Handle_t *Handle, const void *Data, size_t Size) {
     if(!CFE_SRL_QueryStatus((const CFE_SRL_Global_Handle_t *)Handle, CFE_SRL_HANDLE_STATUS_FD_INIT)) {
         return CFE_SRL_NOT_OPEN_ERR;
     }
-    OS_printf("FD = %d || Data = %p || Size = %u\n", Handle->FD, Data, (uint32_t)Size);
+        
     WriteBytes = CFE_SRL_BasicWrite(Handle->FD, Data, Size);
     if (WriteBytes < 0) {
         Handle->TxErrCnt++;
@@ -53,9 +53,9 @@ int CFE_SRL_Write(CFE_SRL_IO_Handle_t *Handle, const void *Data, size_t Size) {
     return CFE_SUCCESS;
 }
 
-int CFE_SRL_Read(CFE_SRL_IO_Handle_t *Handle, void *Data, size_t Size, uint32_t Timeout) {
+int CFE_SRL_Read(CFE_SRL_IO_Handle_t *Handle, void *Data, size_t Size, uint32_t Timeout, ssize_t *ReadBytes) {
     // int Status;
-    ssize_t ReadBytes;
+    ssize_t RdBytes;
 
     if (Handle == NULL || Data == NULL) return CFE_SRL_BAD_ARGUMENT;
     
@@ -63,22 +63,23 @@ int CFE_SRL_Read(CFE_SRL_IO_Handle_t *Handle, void *Data, size_t Size, uint32_t 
         return CFE_SRL_NOT_OPEN_ERR;        
     }
     
-    ReadBytes = CFE_SRL_BasicPollRead(Handle->FD, Data, Size, Timeout);
+    RdBytes = CFE_SRL_BasicPollRead(Handle->FD, Data, Size, Timeout);
+    if (ReadBytes) *ReadBytes = RdBytes;
 
-    if (ReadBytes == CFE_SRL_TIMEOUT) {
+    if (RdBytes == CFE_SRL_TIMEOUT) {
         Handle->RxErrCnt ++;
         Handle->__errno = errno;
         return CFE_SRL_TIMEOUT;
     }
-    else if (ReadBytes == CFE_SRL_ERR) {
+    else if (RdBytes == CFE_SRL_ERR) {
         Handle->RxErrCnt ++;
         Handle->__errno = errno;
         return CFE_SRL_READ_ERR;
     }
 
-    Handle->RxCount += ReadBytes;
+    Handle->RxCount += RdBytes;
 
-    if (ReadBytes != Size) {
+    if (RdBytes != Size) {
         Handle->RxErrCnt ++;
         Handle->__errno = errno;
         return CFE_SRL_PARTIAL_READ_ERR;
@@ -92,19 +93,21 @@ int CFE_SRL_TransactionI2C(CFE_SRL_IO_Handle_t *Handle, const void *TxData, size
     struct i2c_rdwr_ioctl_data Packet = {0,};
     struct i2c_msg MsgI2C[2] = {0,};
 
-    // First Message - Write
-    MsgI2C[0].addr = (uint16_t)Addr;
-    MsgI2C[0].flags = 0;    // Write flag
-    MsgI2C[0].len = TxSize;
-    MsgI2C[0].buf = (uint8_t *)TxData;
+    if (TxData != NULL && TxSize > 0) {
+        // First Message - Write
+        MsgI2C[Packet.nmsgs].addr = (uint16_t)Addr;
+        MsgI2C[Packet.nmsgs].flags = 0;    // Write flag
+        MsgI2C[Packet.nmsgs].len = TxSize;
+        MsgI2C[Packet.nmsgs].buf = (uint8_t *)TxData;
 
-    Packet.nmsgs ++;
+        Packet.nmsgs ++;
+    }
 
     // Second Message - Read
-    MsgI2C[1].addr = (uint16_t)Addr;
-    MsgI2C[1].flags = I2C_M_RD; // Read flag
-    MsgI2C[1].len = RxSize;
-    MsgI2C[1].buf = RxData;
+    MsgI2C[Packet.nmsgs].addr = (uint16_t)Addr;
+    MsgI2C[Packet.nmsgs].flags = I2C_M_RD; // Read flag
+    MsgI2C[Packet.nmsgs].len = RxSize;
+    MsgI2C[Packet.nmsgs].buf = RxData;
 
     Packet.nmsgs ++;
     
@@ -187,7 +190,7 @@ int CFE_SRL_OpenSocket(CFE_SRL_IO_Handle_t *Handle, const char *DevName) {
  *  IO GPIO Function
  * 
  *************************************************************/
-int CFE_SRL_GpioInit(CFE_SRL_GPIO_Handle_t *Handle, const char *Path, unsigned int Line, const char *Name, bool Default) {
+int CFE_SRL_GpioInit(CFE_SRL_GPIO_Handle_t *Handle, const char *Path, unsigned int Line, const char *Name, bool Default, bool IsOut) {
     int Status;
     OS_printf("GPIO Handle address: %p\n",Handle);
     if (Handle == NULL || Path == NULL) return CFE_SRL_BAD_ARGUMENT;
@@ -198,7 +201,8 @@ int CFE_SRL_GpioInit(CFE_SRL_GPIO_Handle_t *Handle, const char *Path, unsigned i
     Status = CFE_SRL_BasicGpioGetLine(Handle, Line);
     if (Status != CFE_SUCCESS) return Status;
 
-    Status = CFE_SRL_BasicGpioSetOutput(Handle, Name, Default);
+    if (IsOut) Status = CFE_SRL_BasicGpioSetOutput(Handle, Name, Default);
+    else Status = CFE_SRL_BasicGpioSetInput(Handle, Name);
     if (Status != CFE_SUCCESS) return Status;
 
     return CFE_SUCCESS;

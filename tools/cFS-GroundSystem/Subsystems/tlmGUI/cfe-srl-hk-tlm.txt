@@ -1,0 +1,18 @@
+#
+Command Counter,               12,  1,  B, Dec, NULL,        NULL,        NULL,       NULL
+Error Counter,                 13,  1,  B, Dec, NULL,        NULL,        NULL,       NULL
+Handle1 Status,                14,  1,  B, Hex, NULL,        NULL,        NULL,       NULL
+IO Handle1 FD,                 15,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+IO Handle1 errno,              19,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+IO Handle1 Tx Count,           23,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+IO Handle1 Rx Count,           27,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+IO Handle1 Tx Error Count,     31,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+IO Handle1 Rx Error Count,     35,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+IO Handle1 Tx Function Ptr1,   39,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+IO Handle1 Tx Function Ptr2,   43,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+IO Handle1 Rx Function Ptr1,   47,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+IO Handle1 Rx Function Ptr2,   51,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+#GPIO1 chip Ptr1,               55,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+#GPIO1 chip Ptr2,               59,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+#GPIO1 line Ptr1,               63,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+#GPIO1 line Ptr2,               67,  4,  I, Hex, NULL,        NULL,        NULL,       NULL

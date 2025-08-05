@@ -99,14 +99,14 @@ CFE_TBL_FileDef_t CFE_TBL_FileDef = {"LC_WDT", LC_APP_NAME "." LC_WDT_TABLENAME,
 LC_WDTEntry_t LC_WDT[LC_MAX_WATCHPOINTS] = {
     /* #0 (unused) */
     {
-        .DataType                   = LC_DATA_WATCH_NOT_USED,
-        .OperatorID                 = LC_OPER_NONE,
-        .MessageID                  = CFE_SB_MSGID_RESERVED,
-        .WatchpointOffset           = 0,
+        .DataType                   = LC_DATA_WATCH_UBYTE,
+        .OperatorID                 = LC_OPER_GE,
+        .MessageID                  = CFE_SB_MSGID_WRAP_VALUE(0x0883),
+        .WatchpointOffset           = 17,
         .BitMask                    = LC_BITMASK_NONE,
         .CustomFuncArgument         = 0,
         .ResultAgeWhenStale         = 0,
-        .ComparisonValue.Unsigned32 = 0,
+        .ComparisonValue.Unsigned8  = 5,
     },
 
     /* #1 (unused) */

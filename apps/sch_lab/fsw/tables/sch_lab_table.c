@@ -31,9 +31,9 @@
 #include "to_lab_msgids.h"
 #endif
 
-#ifdef HAVE_SAMPLE_APP
+
 #include "sample_app_msgids.h"
-#endif
+
 
 #ifdef HAVE_HS
 #include "hs_msgids.h"
@@ -43,17 +43,18 @@
 #include "fm_msgids.h"
 #endif
 
-#ifdef HAVE_SC
+
 #include "sc_msgids.h"
-#endif
+
 
 #ifdef HAVE_DS
 #include "ds_msgids.h"
 #endif
 
-#ifdef HAVE_LC
+
+
 #include "lc_msgids.h"
-#endif
+
 
 /*
 ** SCH Lab schedule table
@@ -72,8 +73,11 @@ SCH_LAB_ScheduleTable_t SCH_LAB_ScheduleTable = {
         {CFE_SB_MSGID_WRAP_VALUE(CFE_TIME_SEND_HK_MID), 98, 0},
         {CFE_SB_MSGID_WRAP_VALUE(CFE_SB_SEND_HK_MID), 97, 0},
         {CFE_SB_MSGID_WRAP_VALUE(CFE_EVS_SEND_HK_MID), 96, 0},
-        {CFE_SB_MSGID_WRAP_VALUE(CFE_SRL_SEND_HK_MID), 96, 0},
+        // {CFE_SB_MSGID_WRAP_VALUE(CFE_SRL_SEND_HK_MID), 96, 0},
         // {CFE_SB_MSGID_WRAP_VALUE(SAMPLE_APP_CMD_MID), 100, 2},
+        {CFE_SB_MSGID_WRAP_VALUE(LC_SAMPLE_AP_MID), 100, 0, 8, {0, 175, 1}},
+        {CFE_SB_MSGID_WRAP_VALUE(SAMPLE_APP_SEND_HK_MID), 96, 0},
+        {CFE_SB_MSGID_WRAP_VALUE(SC_ONEHZ_WAKEUP_MID), 91, 0},
 
 /* Example of including additional open source apps  */
 #ifdef HAVE_CI_LAB

@@ -121,9 +121,9 @@ endif
 
 all:
 	$(MAKE) --no-print-directory -C "$(O)" mission-all
-
 install:
 	$(MAKE) --no-print-directory -C "$(O)" DESTDIR="$(DESTDIR)" mission-install
+
 
 prep $(O)/.prep:
 	cd tools/serial-configtool && python3 genfunction.py
@@ -137,6 +137,9 @@ clean:
 
 distclean:
 	rm -rf "$(O)"
+	cd $(shell pwd)/submodules/libgscsp && python3 ./waf distclean
+	rm -rf $(shell pwd)/submodules/libgpiod/obc
+	cd $(shell pwd)/submodules/libgpiod && make distclean
 
 # Grab lcov baseline before running tests
 test:

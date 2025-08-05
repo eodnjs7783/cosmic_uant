@@ -1,0 +1,16 @@
+Message ID,            12,  2,  H, Hex, NULL,        NULL,        NULL,       NULL
+Command Code,          14,  1,  B, Dec, NULL,        NULL,        NULL,       NULL
+Return Type,           15,  1,  B, Dec, NULL,        NULL,        NULL,       NULL
+Return Code,           16,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+Return Data Size,  	   20,  2,  H, Dec, NULL,        NULL,        NULL,       NULL
+Return Data Value1,    22,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+Time sec,              82,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+Time subsec,           86,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+Message ID,            90,  2,  H, Hex, NULL,        NULL,        NULL,       NULL
+Command Code,          92,  1,  B, Dec, NULL,        NULL,        NULL,       NULL
+Return Type,           93,  1,  B, Dec, NULL,        NULL,        NULL,       NULL
+Return Code,           94,  4,  I, Dec, NULL,        NULL,        NULL,       NULL
+Return Data Size,  	   98,  2,  H, Dec, NULL,        NULL,        NULL,       NULL
+Return Data Value1,    100,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+Time Sec,              160,  4,  I, Hex, NULL,        NULL,        NULL,       NULL
+Time SubSec,           164,  4,  I, Hex, NULL,        NULL,        NULL,       NULL

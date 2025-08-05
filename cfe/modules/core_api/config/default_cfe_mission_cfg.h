@@ -35,5 +35,6 @@
 #include "cfe_tbl_mission_cfg.h"
 #include "cfe_time_mission_cfg.h"
 #include "cfe_fs_mission_cfg.h"
+#include "cfe_srl_mission_cfg.h"
 
 #endif /* CFE_MISSION_CFG_H */

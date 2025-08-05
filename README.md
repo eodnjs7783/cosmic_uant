@@ -1,8 +1,10 @@
-# COSMIC FSW
+# DSS & ACL FSW via cFS
 - Author: Kweon HyeokJin
 
 # Notes
 ## V2.0
+- Move serial config file (`Interface_config.json` & `csp_config.json`) to `sample_defs`
+- Add CSP configuration tool - refer `csp_config.json`
 - Revise SRL module
   - Add SRL Task for TCTM
 - Add LC, HS, FM apps

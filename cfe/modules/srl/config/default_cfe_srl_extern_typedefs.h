@@ -55,6 +55,16 @@ struct CFE_SRL_IO_Param_s {
      * CAN : CAN frame ID
      */
     uint32_t Addr;
+    /**
+     * Used for ApiRead - Not used in I2C, SPI
+     * The parameter determine the **time interval** between `Write` -> `Read`
+     */
+    uint32_t Interval;
+
+    /**
+     * Read Bytes from ApiRead - Not used in I2C, SPI
+     */
+    ssize_t ReadBytes;
 };
 
 
@@ -63,5 +73,16 @@ typedef struct {
     struct gpiod_chip *Chip;
     struct gpiod_line *Line;
 } CFE_SRL_GPIO_Handle_t;
+
+
+/**
+ * Module internal CSP node configuration sturcture
+ */
+typedef struct {
+    uint8_t Priority;
+    uint32_t Timeout;
+    uint32_t Options;
+} CFE_SRL_CSP_Node_Config_t;
+
 
 #endif /* CFE_SRL_EXTERN_TYPEDEF_H */

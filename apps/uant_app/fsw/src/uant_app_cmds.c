@@ -455,6 +455,65 @@ CFE_Status_t UANT_APP_GetDeploymentStatus(const UANT_APP_ISIS_ReportDeploymentSt
     return status;
 }
 
+/*
+typedef struct {
+    CFE_MSG_TelemetryHeader_t TelemetryHeader;
+    RPT_Report_t              Payload;
+} UANT_RPT_Tlm_t;
+
+CFE_Status_t UANT_APP_GetDeploymentStatus(const UANT_APP_ISIS_ReportDeploymentStatusCmd_t *Msg)
+{
+    CFE_Status_t status;
+    uint16        deploy_status;
+
+    status = ISIS_UANT_ReportDeploymentStatus(&deploy_status);
+
+ 
+    RPT_Report_t report = {0};
+    report.MsgID         = UANT_APP_OP_TLM_MID;      
+    report.CommandCode   = UANT_APP_GETDEPLOY_STATUS_CC;    
+    report.ReturnType    = (status == CFE_SUCCESS)
+                             ? RPT_RETTYPE_SUCCESS
+                             : RPT_RETTYPE_CFE;
+    report.ReturnCode    = status;
+    report.ReturnDataSize = sizeof(deploy_status);
+    memcpy(report.ReturnValue, &deploy_status, sizeof(deploy_status));
+
+    
+    {
+        UANT_RPT_Tlm_t tlm = {0};
+
+        CFE_MSG_Init(CFE_MSG_PTR(tlm.TelemetryHeader),
+                     CFE_SB_ValueToMsgId(report.MsgID),
+                     sizeof(tlm));
+
+        tlm.Payload = report;
+
+       
+        CFE_SB_TimeStampMsg(CFE_MSG_PTR(tlm.TelemetryHeader));
+
+        CFE_SB_TransmitMsg(CFE_MSG_PTR(tlm.TelemetryHeader), true);
+    }
+
+    if (status != CFE_SUCCESS)
+    {야
+        CFE_EVS_SendEvent(UANT_APP_GET_STATUS_ERR_EID,
+                          CFE_EVS_EventType_ERROR,
+                          "UANT: Failed to get deployment status, hw_status=0x%08X",
+                          status);
+        UANT_APP_Data.ErrCounter++;
+    }
+    else
+    {
+        UANT_APP_Data.CmdCounter++;
+        OS_printf("Deployment status=0x%04X\n", deploy_status);
+    }
+
+    return status;
+}
+//크리티컬은? 무엇을 넣어야
+*/
+
 CFE_Status_t UANT_APP_MeasureAntSystemTemperature(const UANT_APP_ISIS_MeasureSystemTemperatureCmd_t *Msg)
 {
     CFE_Status_t status;

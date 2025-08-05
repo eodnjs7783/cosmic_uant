@@ -132,12 +132,14 @@ int CFE_SRL_BasicSetUART(CFE_SRL_IO_Handle_t *Handle, uint32_t BaudRate) {
     Termios2.c_lflag &= ~(ISIG | ICANON); // Neglect Terminal signal (like SIGINT), Read by character
     Termios2.c_lflag &= ~(ECHO | ECHOE | ECHOK | ECHONL); // Echo off
     
-    // Input Flag
+    // Input Flag - Applied to OBC's input data
     Termios2.c_iflag &= ~(INPCK | ISTRIP); // Parity check off, Masking(8 bit to 7 bit by Mask 0x7F) off
     Termios2.c_iflag &= ~(IXON | IXOFF | IXANY); // Flow Control off
+    Termios2.c_iflag &= ~(ICRNL | INLCR | IGNCR); // input `\r` <-> `\n` off, ignore `\r` off
 
-    // Output Flag
-    Termios2.c_oflag &= ~(OPOST); // Post Process off
+    // Output Flag - Applied to OBC's output data
+    Termios2.c_oflag &= ~(OPOST | ONLCR | OCRNL); // Post Process off & output `\r` <-> `\n` off
+    Termios2.c_oflag |= OCRNL;
 
     Status = CFE_SRL_BasicIOCTL(Handle->FD, TCSETS2, &Termios2);
     if (Status == -1) {
@@ -214,6 +216,17 @@ int32 CFE_SRL_BasicGpioSetOutput(CFE_SRL_GPIO_Handle_t *Handle, const char *Name
     return CFE_SUCCESS;
 }
 
+int32 CFE_SRL_BasicGpioSetInput(CFE_SRL_GPIO_Handle_t *Handle, const char *Name) {
+    int32 Status;
+
+    if (Handle == NULL) return CFE_SRL_BAD_ARGUMENT;
+
+    Status = gpiod_line_request_input(Handle->Line, Name);
+    if (Status < 0) return CFE_SRL_GPIO_SET_OUTPUT_ERR;
+
+    return CFE_SUCCESS;
+}
+
 int32 CFE_SRL_BasicGpioSetValue(CFE_SRL_GPIO_Handle_t *Handle, bool Value) {
     int32 Status;
 
@@ -223,6 +236,17 @@ int32 CFE_SRL_BasicGpioSetValue(CFE_SRL_GPIO_Handle_t *Handle, bool Value) {
     if (Status < 0) return CFE_SRL_GPIO_SET_VALUE_ERR;
 
     return CFE_SUCCESS;
+}
+
+int32 CFE_SRL_BasicGpioGetValue(CFE_SRL_GPIO_Handle_t *Handle) {
+    int32 Status;
+
+    if (Handle == NULL) return CFE_SRL_BAD_ARGUMENT;
+
+    Status = gpiod_line_get_value(Handle->Line);
+    if (Status < 0) return CFE_SRL_GPIO_SET_VALUE_ERR;
+
+    return Status;
 }
 
 int32 CFE_SRL_BasicGpioClose(CFE_SRL_GPIO_Handle_t *Handle) {

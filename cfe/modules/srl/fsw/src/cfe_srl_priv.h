@@ -5,7 +5,7 @@
 #include "cfe_srl_api_typedefs.h"
 // #include "cfe_srl_handle.h"
 #include "cfe_srl_task.h"
-
+#include <time.h>
 
 CFE_SRL_IO_Handle_t *CFE_SRL_GetHandle(CFE_SRL_Handle_Indexer_t Index);
 CFE_SRL_GPIO_Handle_t *CFE_SRL_GetGpioHandle(CFE_SRL_GPIO_Indexer_t Index);

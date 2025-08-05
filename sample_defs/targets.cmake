@@ -79,7 +79,6 @@ SET(SPACECRAFT_ID 0x42)
 # The "MISSION_CORE_MODULES" will be built and statically linked as part
 # of the CFE core executable on every target.  These can be used to amend
 # or override parts of the CFE core on a mission-specific basis.
-
 list(APPEND MISSION_CORE_MODULES srl)
 list(APPEND MISSION_CORE_MODULES rf)
 
@@ -88,7 +87,7 @@ list(APPEND MISSION_CORE_MODULES rf)
 # and must be loaded explicitly via startup script or command.
 # This list is effectively appended to every TGTx_APPLIST in targets.cmake.
 # Example:
-list(APPEND MISSION_GLOBAL_APPLIST sample_app sample_lib uant_app)
+list(APPEND MISSION_GLOBAL_APPLIST sample_app sample_lib rpt uant_app)
 
 # The "MISSION_GLOBAL_STATIC_APPLIST" is similar to MISSION_GLOBAL_APPLIST
 # but the apps are statically linked.
@@ -104,7 +103,7 @@ SET(FT_INSTALL_SUBDIR "host/functional-test")
 SET(MISSION_CPUNAMES cpu1 obc)
 
 SET(cpu1_PROCESSORID 1)
-SET(cpu1_APPLIST ci_lab to_lab sch_lab hk sc lc fm hs)
+SET(cpu1_APPLIST ci_lab to_lab sch_lab hk sc lc fm hs ds)
 SET(cpu1_FILELIST cfe_es_startup.scr)
 SET(cpu1_SYSTEM i686-linux-gnu)
 
@@ -112,7 +111,7 @@ SET(cpu1_SYSTEM i686-linux-gnu)
 # serves as an example of how one would configure multiple cpus.
 # Add for obc build 
 SET(obc_PROCESSORID 2)
-SET(obc_APPLIST ci_lab to_lab sch_lab hk sc lc fm hs)
+SET(obc_APPLIST ci_lab to_lab sch_lab hk sc lc fm hs ds)
 SET(obc_FILELIST cfe_es_startup.scr)
 SET(obc_SYSTEM obc)
 
