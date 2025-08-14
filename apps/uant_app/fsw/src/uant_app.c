@@ -122,7 +122,7 @@ CFE_Status_t UANT_APP_Init(void)
 {
     CFE_Status_t status;
     
-    I2C_Handle = CFE_SRL_ApiGetHandle(CFE_SRL_I2C0_HANDLE_INDEXER);
+    I2C_Handle = CFE_SRL_ApiGetHandle(CFE_SRL_I2C2_HANDLE_INDEXER);
     /* Zero out the global data structure */
     memset(&UANT_APP_Data, 0, sizeof(UANT_APP_Data));
 

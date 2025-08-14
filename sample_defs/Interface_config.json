@@ -14,7 +14,7 @@
         },
         {
             "type": "i2c",
-            "ready": false,
+            "ready": true,
             "name": "I2C2",
             "DevName": "/dev/i2c-2"
         },

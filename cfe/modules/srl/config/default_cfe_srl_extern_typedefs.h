@@ -64,7 +64,7 @@ struct CFE_SRL_IO_Param_s {
     /**
      * Read Bytes from ApiRead - Not used in I2C, SPI
      */
-    ssize_t ReadBytes;
+    size_t ReadBytes;
 };
 
 

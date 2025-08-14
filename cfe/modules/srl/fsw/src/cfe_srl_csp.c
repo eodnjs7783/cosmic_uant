@@ -23,7 +23,7 @@ int CFE_SRL_RouteInitCSP(void) {
      * CSP CAN Initialization
      * @param bitrate meaningless
      */
-    Status = csp_can_socketcan_open_and_add_interface(CSP_CAN_DEV_NAME, "CSP CAN", 1000000, false, &InterfaceCAN);
+    Status = csp_can_socketcan_open_and_add_interface("CSP_CAN_DEV_NAME", "CSP CAN", 1000000, false, &InterfaceCAN); // CSP_CAN_DEV_NAME
     if (Status != CSP_ERR_NONE) {
         CFE_ES_WriteToSysLog("%s: CSP Socket CAN Init failed! RC = %d", __func__, Status);
         return CFE_SRL_CSP_CAN_INIT_ERR;
